@@ -57,17 +57,16 @@ public class BoardManager : MonoBehaviour {
 				return false;
 			}
 
+			// split so that the resulting sub-dungeons are not too small
 			if (splitH) {
-				// split so that the resulting sub-dungeons widths are not too small
-				// (since we are splitting horizontally) 
-				int split = Random.Range (minRoomSize, (int)(rect.width - minRoomSize));
+				int split = Random.Range (minRoomSize, (int)(rect.height - minRoomSize));
 
 				left = new SubDungeon (new Rect (rect.x, rect.y, rect.width, split));
 				right = new SubDungeon (
 					new Rect (rect.x, rect.y + split, rect.width, rect.height - split));
 			}
 			else {
-				int split = Random.Range (minRoomSize, (int)(rect.height - minRoomSize));
+				int split = Random.Range (minRoomSize, (int)(rect.width - minRoomSize));
 
 				left = new SubDungeon (new Rect (rect.x, rect.y, split, rect.height));
 				right = new SubDungeon (
